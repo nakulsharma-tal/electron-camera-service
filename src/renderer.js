@@ -12,7 +12,7 @@ const {
   CAPTURE_BTN,
   CAPTURE_AGAIN_BTN,
 } = require("./elements");
-const { videoDimensions } = require("./constants");
+const { videoStreamConfig } = require("./constants");
 const {
   initializeUserFacingCamera,
   disconnectCamera,
@@ -21,15 +21,15 @@ const {
 } = require("./camera");
 
 (function initialSetup() {
-  VIDEO_EL.width = videoDimensions.width;
-  VIDEO_EL.height = videoDimensions.height;
-  VIDEO_EL.aspectRatio = videoDimensions.aspectRatio;
+  VIDEO_EL.width = videoStreamConfig.width;
+  VIDEO_EL.height = videoStreamConfig.height;
+  VIDEO_EL.aspectRatio = videoStreamConfig.aspectRatio;
 
-  CANVAS_EL.width = videoDimensions.width;
-  CANVAS_EL.height = videoDimensions.height;
+  CANVAS_EL.width = videoStreamConfig.width;
+  CANVAS_EL.height = videoStreamConfig.height;
 
-  IMAGE_EL.width = videoDimensions.width;
-  IMAGE_EL.height = videoDimensions.height;
+  IMAGE_EL.width = videoStreamConfig.width;
+  IMAGE_EL.height = videoStreamConfig.height;
   IMAGE_EL.hidden = true;
 
   CAPTURE_BTN.disabled = false;

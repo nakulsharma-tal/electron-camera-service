@@ -1,17 +1,22 @@
-const videoDimensions = {
+const videoStreamConfig = {
   // eslint-disable-next-line no-restricted-globals
-  width: 1920,
+  width: process.env.VIDEO_WIDTH,
   // eslint-disable-next-line no-restricted-globals
-  height: 1080,
-  aspectRatio: 1920 / 1080,
+  height: process.env.VIDEO_HEIGHT,
+  aspectRatio: process.env.VIDEO_WIDTH / process.env.VIDEO_HEIGHT,
+  frameRate: {
+    min: process.env.STREAM_FRAME_RATE_MIN,
+    ideal: process.env.STREAM_FRAME_RATE_IDEAL,
+  },
+  latency: process.env.STREAM_LATENCY,
 };
 
-const mimeType = "image/jpeg";
+const imageMimeType = process.env.IMAGE_MIME_TYPE;
 
-const userFacingCameraLabel = "Integrated Webcam";
+const userFacingCameraLabel = process.env.USER_FACING_CAMERA_LABEL;
 
 module.exports = {
-  videoDimensions,
-  mimeType,
+  videoStreamConfig,
+  imageMimeType,
   userFacingCameraLabel,
 };

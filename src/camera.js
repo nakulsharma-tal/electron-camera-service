@@ -1,15 +1,13 @@
 const {
-  mimeType,
+  imageMimeType,
   userFacingCameraLabel,
-  videoDimensions,
+  videoStreamConfig,
 } = require("./constants");
 
 const mediaStreamConstraints = {
   audio: false,
   video: {
-    ...videoDimensions,
-    frameRate: { min: 30, ideal: 48 },
-    latency: 0,
+    ...videoStreamConfig,
   },
 };
 
@@ -75,7 +73,7 @@ function disconnectCamera(videoElement) {
 }
 
 function captureBytesFromLiveCanvas(canvasElement) {
-  return canvasElement.toDataURL(mimeType);
+  return canvasElement.toDataURL(imageMimeType);
 }
 
 function captureToCanvas(videoElement, canvasElement) {
@@ -85,7 +83,7 @@ function captureToCanvas(videoElement, canvasElement) {
     return;
   }
 
-  const ratio = videoDimensions.width / videoDimensions.height;
+  const ratio = videoStreamConfig.width / videoStreamConfig.height;
   const height = videoElement.videoWidth / ratio;
   const yOffset = (videoElement.videoHeight - height) / 2;
 
