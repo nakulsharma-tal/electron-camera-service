@@ -4,12 +4,73 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
-const replaceElementInnerTextByIdSelector = (selector, text) => {
-  const elements = document.getElementsByClassName(selector);
 
-  if (elements && elements.length) {
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].innerText = text;
-    }
-  }
-};
+const {
+  VIDEO_EL,
+  CANVAS_EL,
+  IMAGE_EL,
+  CAPTURE_BTN,
+  CAPTURE_AGAIN_BTN,
+} = require("./elements");
+const { videoDimensions } = require("./constants");
+const {
+  initializeUserFacingCamera,
+  disconnectCamera,
+  captureBytesFromLiveCanvas,
+  captureToCanvas,
+} = require("./camera");
+
+(function initialSetup() {
+  VIDEO_EL.width = videoDimensions.width;
+  VIDEO_EL.height = videoDimensions.height;
+  VIDEO_EL.aspectRatio = videoDimensions.aspectRatio;
+
+  CANVAS_EL.width = videoDimensions.width;
+  CANVAS_EL.height = videoDimensions.height;
+
+  IMAGE_EL.width = videoDimensions.width;
+  IMAGE_EL.height = videoDimensions.height;
+  IMAGE_EL.hidden = true;
+
+  CAPTURE_BTN.disabled = false;
+  CAPTURE_AGAIN_BTN.disabled = true;
+
+  initializeUserFacingCamera(navigator, VIDEO_EL).then(() => {
+    console.log("Camera Initialized!!");
+  });
+})();
+
+CAPTURE_BTN.addEventListener("click", () => {
+  console.log("Capturing Image!!");
+
+  CAPTURE_BTN.disabled = true;
+  CAPTURE_AGAIN_BTN.disabled = false;
+
+  captureToCanvas(VIDEO_EL, CANVAS_EL);
+  IMAGE_EL.src = captureBytesFromLiveCanvas(CANVAS_EL);
+
+  VIDEO_EL.hidden = true;
+  IMAGE_EL.hidden = false;
+
+  disconnectCamera(VIDEO_EL).then(() => {
+    console.log("Camera Disconnected!!");
+  });
+});
+
+CAPTURE_AGAIN_BTN.addEventListener("click", () => {
+  console.log("Capturing Again!!");
+
+  CAPTURE_BTN.disabled = true;
+  CAPTURE_AGAIN_BTN.disabled = true;
+
+  initializeUserFacingCamera(navigator, VIDEO_EL).then(() => {
+    console.log("Camera Initialized!!");
+
+    VIDEO_EL.hidden = false;
+    IMAGE_EL.hidden = true;
+
+    IMAGE_EL.src = "";
+
+    CAPTURE_BTN.disabled = false;
+  });
+});

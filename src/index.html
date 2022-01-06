@@ -18,6 +18,25 @@
   <span id="chrome-version"></span>, and Electron
   <span id="electron-version"></span>.
 
+  <div class="camera-container">
+    <div class="video-container">
+      <video class="camera-video" id="camera-video" autoPlay></video>
+      <canvas hidden class="camera-video-canvas" id="camera-video-canvas"></canvas>
+
+      <img class="camera-image" id="camera-image" alt="Image" />
+    </div>
+
+    <div class="button-container">
+      <button class="btn" id="capture-btn" type="button">
+        Capture
+      </button>
+
+      <button class="btn" id="capture-again-btn" type="button">
+        Capture Again
+      </button>
+    </div>
+  </div>
+
   <!-- You can also require other files to run in this process -->
   <script type="module" src="./renderer.js"></script>
 </body>

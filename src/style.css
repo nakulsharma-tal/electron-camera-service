@@ -2,4 +2,74 @@ body {
   font-size: 16px;
   margin: 0;
   padding: 20px;
+  text-align: center;
+}
+
+button {
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+}
+
+.camera-container {
+  width: 60%;
+  margin: 30px auto;
+}
+
+.video-container {
+  width: 100%;
+  margin: auto;
+}
+
+.camera-video {
+  width: 100%;
+  height: 100%;
+  border: 2px solid red;
+  border-radius: 10px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.camera-video-canvas {
+  height: 100%;
+  width: 100%;
+}
+
+.camera-image {
+  height: 100%;
+  width: 100%;
+  border: 2px solid green;
+  border-radius: 10px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.button-container {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.btn {
+  min-width: 270px;
+  height: 92px;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 -3px 0 0 #cf561d, 0 3px 0 0 #cf561d, inset 0 6px 0 0 #f47b1f,
+    inset 0 3px 0 0 #cf561d;
+  background-image: linear-gradient(to top, #f7911e, #f26522);
+  border: none;
+  outline: none;
+  color: #ffffff;
+  margin: auto 20px;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.6;
 }
