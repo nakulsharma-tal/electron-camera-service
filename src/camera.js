@@ -87,6 +87,8 @@ function captureToCanvas(videoElement, canvasElement) {
   const height = videoElement.videoWidth / ratio;
   const yOffset = (videoElement.videoHeight - height) / 2;
 
+  context.setTransform(-1, 0, 0, 1, canvasElement.width, 0);
+
   context.drawImage(
     videoElement,
     0,
