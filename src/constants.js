@@ -8,7 +8,7 @@ const videoStreamConfig = {
     min: process.env.STREAM_FRAME_RATE_MIN,
     ideal: process.env.STREAM_FRAME_RATE_IDEAL,
   },
-  latency: process.env.STREAM_LATENCY,
+  latency: { ideal: process.env.STREAM_LATENCY_IDEAL },
 };
 
 const imageMimeType = process.env.IMAGE_MIME_TYPE;
